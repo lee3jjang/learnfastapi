@@ -13,7 +13,6 @@ class AnswerCreate(BaseModel):
 
     @validator("content")
     def not_empty(cls, v):
-        print(v)
         if not v or not v.strip():
             raise ValueError("Empty value is not allowed")
         return v
