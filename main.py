@@ -1,6 +1,7 @@
 from pydantic import BaseModel
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI
 from starlette.middleware.cors import CORSMiddleware
+from sqlalchemy.orm import Session
 
 from domain.question import question_router
 
@@ -28,12 +29,26 @@ class Item(BaseModel):
     age: int | None = None
 
 
-@app.get("/memo/{memo_id}")
-async def showmethemoney(memo_id: int):
-    return {"memo_id": memo_id}
+def test_contextlib():
+    print("Before try")
+    x = {"name": "sangjin"}
+    try:
+        print("Before yield")
+        yield x
+        print("After yield")
+    finally:
+        print("Finally")
 
 
-@app.post("/memo")
+@app.get("/test/{test_id}")
+async def showmethemoney(test_id: int, x: Session = Depends(test_contextlib)):
+    print("showmethemoney")
+    print(x, test_id)
+    print("operationcwal")
+    return {"test_id": test_id}
+
+
+@app.post("/test")
 async def operationcwal(item: Item):
     item.age += 10
     return item
