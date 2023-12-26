@@ -1,14 +1,14 @@
 {
   "mypy.runUsingActiveInterpreter": true,
-  "editor.tabSize": 4,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "pylint.args": ["--load-plugins", "pylint_pydantic"],
   "[python]": {
-    "editor.defaultFormatter": "ms-python.black-formatter"
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.tabSize": 4
   },
   "[svelte]": {
     "editor.defaultFormatter": "svelte.svelte-vscode",
-    "editor.tabSize": 4
+    "editor.tabSize": 2
   }
 }
