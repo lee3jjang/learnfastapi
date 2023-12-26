@@ -1,21 +1,26 @@
 <script>
+  let question_list = [];
 
-  async function hello() {
-    const res = await fetch('http://localhost:8000/hello');
+  async function get_question_list() {
+    const res = await fetch("http://localhost:8000/api/question/list");
     const json = await res.json();
-    
+
     if (res.ok) {
-      return json.message;
+      question_list = json;
     } else {
       alert("error");
     }
   }
 
-  let promise = hello();
+  get_question_list();
 </script>
 
-{#await promise}
-  <p>...waiting</p> 
-{:then message} 
-  <h1>{message}</h1>
+{#await question_list}
+  <p>...waiting</p>
+{:then question_list}
+  <ul>
+    {#each question_list as { subject }}
+      <li>{subject}</li>
+    {/each}
+  </ul>
 {/await}
