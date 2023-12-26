@@ -3,6 +3,7 @@
   "editor.tabSize": 4,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
+  "pylint.args": ["--load-plugins", "pylint_pydantic"],
   "[python]": {
     "editor.defaultFormatter": "ms-python.black-formatter"
   },
