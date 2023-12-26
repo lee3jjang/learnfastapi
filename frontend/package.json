@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.2",
+    "dayjs": "^1.11.10",
     "svelte-spa-router": "^4.0.0"
   }
 }
