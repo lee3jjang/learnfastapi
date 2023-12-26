@@ -14,13 +14,22 @@ router = APIRouter(
 
 @router.get(
     "/list",
-    response_model=list[question_schema.Question],
+    response_model=question_schema.QuestionList,
 )
 def question_list(
     db: Session = Depends(get_db),
+    page: int = 0,
+    size: int = 10,
 ):
-    _question_list = get_question_list(db)
-    return _question_list
+    total, _question_list = get_question_list(
+        db,
+        page * size,
+        size,
+    )
+    return {
+        "total": total,
+        "question_list": _question_list,
+    }
 
 
 @router.get(
