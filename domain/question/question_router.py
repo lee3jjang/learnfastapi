@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from database import get_db
+from domain.question import question_crud
 from domain.question.question_crud import get_question_list
 from domain.question import question_schema
 
@@ -19,3 +20,15 @@ def question_list(
 ):
     _question_list = get_question_list(db)
     return _question_list
+
+
+@router.get(
+    "/detail/{question_id}",
+    response_model=question_schema.Question,
+)
+def question_detail(
+    question_id: int,
+    db: Session = Depends(get_db),
+):
+    question = question_crud.get_question(db, question_id)
+    return question
