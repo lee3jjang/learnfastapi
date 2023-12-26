@@ -1,3 +1,4 @@
+from typing import Annotated
 from pydantic import BaseModel
 from fastapi import Depends, FastAPI
 from starlette.middleware.cors import CORSMiddleware
@@ -40,8 +41,20 @@ def test_contextlib():
         print("Finally")
 
 
+async def common_parameters(
+    r: int = 30,
+    q: str | None = None,
+):
+    return {"q": q, "r": r}
+
+
 @app.get("/test/{test_id}")
-async def showmethemoney(test_id: int, x: Session = Depends(test_contextlib)):
+async def showmethemoney(
+    test_id: int,
+    x: Session = Depends(test_contextlib),
+    commons: Annotated[dict, Depends(common_parameters)] = dict,
+):
+    print(commons)
     print("showmethemoney")
     print(x, test_id)
     print("operationcwal")
