@@ -2,6 +2,7 @@
   import fastapi from "../lib/api";
   import Error from "../components/Error.svelte";
   import { push } from "svelte-spa-router";
+  import dayjs from "dayjs";
 
   export let params = {};
   let question_id = params.question_id;
@@ -48,7 +49,7 @@
       </div>
       <div class="d-flex justify-content-end">
         <div class="badge bg-light text-dark p-2">
-          {question.create_date}
+          {dayjs(question.create_date).format("YYYY년 MM월 DD일 hh:mm a")}
         </div>
       </div>
     </div>
@@ -72,7 +73,7 @@
         </div>
         <div class="d-flex justify-content-end">
           <div class="badge bg-light text-dark p-2">
-            {answer.create_date}
+            {dayjs(answer.create_date).format("YYYY년 MM월 DD일 hh:mm a")}
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@
   import fastapi from "../lib/api";
   import { link } from "svelte-spa-router";
   import { page } from "../lib/store";
+  import dayjs from "dayjs";
 
   let question_list = [];
   let size = 10;
@@ -37,7 +38,7 @@
         <tr>
           <td>{i + 1}</td>
           <td><a use:link href="/detail/{id}">{subject}</a></td>
-          <td>{create_date}</td>
+          <td>{dayjs(create_date).format("YYYY년 MM월 DD일 hh:mm a")}</td>
         </tr>
       {/each}
     </tbody>
