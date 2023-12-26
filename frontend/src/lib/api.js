@@ -1,3 +1,5 @@
+import qs from "qs";
+
 const fastapi = (
   operation,
   url,
@@ -5,9 +7,16 @@ const fastapi = (
   success_callback,
   failure_callback
 ) => {
-  const method = operation;
-  const content_type = "application/json";
-  const body = JSON.stringify(params);
+  let method = operation;
+  let content_type = "application/json";
+  let body = JSON.stringify(params);
+
+  if (operation === "login") {
+    method = "post";
+    content_type = "application/x-www-form-urlencoded";
+    body = qs.stringify(params);
+  }
+
   let _url = import.meta.env.VITE_SERVER_URL + url;
   if (method === "get") {
     _url += "?" + new URLSearchParams(params);
