@@ -10,6 +10,7 @@ mypy = "*"
 pylint = "*"
 pydantic = "*"
 sqlalchemy = "*"
+alembic = "*"
 
 [dev-packages]
 
