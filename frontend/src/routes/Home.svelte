@@ -34,10 +34,15 @@
       </tr>
     </thead>
     <tbody>
-      {#each question_list as { id, subject, create_date }, i}
+      {#each question_list as { id, subject, create_date, answers }, i}
         <tr>
-          <td>{i + 1}</td>
-          <td><a use:link href="/detail/{id}">{subject}</a></td>
+          <td>{total - $page * size - i}</td>
+          <td>
+            <a use:link href="/detail/{id}">{subject}</a>
+            {#if answers.length > 0}
+              <span class="text-danger small mx-2">{answers.length}</span>
+            {/if}
+          </td>
           <td>{dayjs(create_date).format("YYYY년 MM월 DD일 hh:mm a")}</td>
         </tr>
       {/each}
