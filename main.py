@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from fastapi import Depends, FastAPI
 from starlette.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
+from domain.answer import answer_router
 
 from domain.question import question_router
 
@@ -23,6 +24,7 @@ app.add_middleware(
 
 
 app.include_router(question_router.router)
+app.include_router(answer_router.router)
 
 
 class Item(BaseModel):

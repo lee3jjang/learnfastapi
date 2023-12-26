@@ -3,7 +3,10 @@ from sqlalchemy.orm import Session
 from models import Question
 
 
-__all__ = ["get_question_list"]
+__all__ = [
+    "get_question_list",
+    "get_question",
+]
 
 
 def get_question_list(db: Session):
