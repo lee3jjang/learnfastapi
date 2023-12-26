@@ -24,7 +24,14 @@ const fastapi = (
     options["body"] = body;
   }
 
-  fetch(_url, options).then((response) =>
+  fetch(_url, options).then((response) => {
+    if (response.status === 204) {
+      // No content
+      if (success_callback) {
+        success_callback();
+      }
+      return;
+    }
     response
       .json()
       .then((json) => {
@@ -43,8 +50,8 @@ const fastapi = (
       })
       .catch((error) => {
         alert(JSON.stringify(error));
-      })
-  );
+      });
+  });
 };
 
 export default fastapi;

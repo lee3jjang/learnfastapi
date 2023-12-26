@@ -12,12 +12,23 @@
   get_question_list();
 </script>
 
-{#await question_list}
-  <p>...waiting</p>
-{:then question_list}
-  <ul>
-    {#each question_list as { id, subject }}
-      <li><a use:link href="/detail/{id}">{subject}</a></li>
-    {/each}
-  </ul>
-{/await}
+<div class="container my-3">
+  <table class="table">
+    <thead>
+      <tr class="table-dark">
+        <th>번호</th>
+        <th>제목</th>
+        <th>작성일시</th>
+      </tr>
+    </thead>
+    <tbody>
+      {#each question_list as { id, subject, create_date }, i}
+        <tr>
+          <td>{i + 1}</td>
+          <td><a use:link href="/detail/{id}">{subject}</a></td>
+          <td>{create_date}</td>
+        </tr>
+      {/each}
+    </tbody>
+  </table>
+</div>
