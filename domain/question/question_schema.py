@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from pydantic import BaseModel, validator
+from pydantic import BaseModel, field_validator
 
 from domain.answer.answer_schema import Answer
 
@@ -19,7 +19,7 @@ class QuestionCreate(BaseModel):
     subject: str
     content: str
 
-    @validator("subject", "content")
+    @field_validator("subject", "content")
     def not_empty(cls, v):
         if not v or not v.strip():
             raise ValueError("Empty value is not allowed")
