@@ -2,6 +2,8 @@ from pydantic import BaseModel
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
+from domain.question import question_router
+
 app = FastAPI()
 
 
@@ -18,9 +20,7 @@ app.add_middleware(
 )
 
 
-@app.get("/hello")
-def hello():
-    return {"message": "안녕하세요 파이보"}
+app.include_router(question_router.router)
 
 
 class Item(BaseModel):
