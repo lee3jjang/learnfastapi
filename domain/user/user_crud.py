@@ -6,6 +6,8 @@ from models import User
 __all__ = [
     "create_user",
     "get_existing_user",
+    "get_user",
+    "pwd_context",
 ]
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -29,3 +31,7 @@ def get_existing_user(db: Session, user_create: UserCreate):
         )
         .first()
     )
+
+
+def get_user(db: Session, username: str):
+    return db.query(User).filter(User.username == username).first()
