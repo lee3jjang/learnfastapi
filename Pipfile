@@ -14,6 +14,9 @@ pylint-pydantic = "*"
 pydantic = {extras = ["email"], version = "*"}
 passlib = {extras = ["bcrypt"], version = "*"}
 bcrypt = "*"
+python-multipart = "*"
+python-jose = {extras = ["cryptography"], version = "*"}
+jose = "*"
 
 [dev-packages]
 
