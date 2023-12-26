@@ -5,7 +5,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 __all__ = [
     "Base",
-    "SessionLocal",
+    "get_db",
 ]
 
 SQLALCHEMY_DATABASE_URL = "sqlite:///./learnfastapi.db"
@@ -22,3 +22,11 @@ SessionLocal = sessionmaker(
 )
 
 Base = declarative_base()
+
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
