@@ -17,6 +17,9 @@ bcrypt = "*"
 python-multipart = "*"
 python-jose = {extras = ["cryptography"], version = "*"}
 jose = "*"
+gunicorn = "*"
+aioconsole = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 

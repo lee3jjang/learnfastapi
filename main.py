@@ -1,3 +1,5 @@
+import os
+import time
 from typing import Annotated
 from pydantic import BaseModel
 from fastapi import Depends, FastAPI
@@ -43,6 +45,11 @@ def test_contextlib():
         print("After yield")
     finally:
         print("Finally")
+
+
+@app.get("/pid")
+def getpid():
+    return os.getpid()
 
 
 async def common_parameters(

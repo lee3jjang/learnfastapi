@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
+from starlette.config import Config
 
 
 __all__ = [
@@ -8,11 +9,12 @@ __all__ = [
     "get_db",
 ]
 
-SQLALCHEMY_DATABASE_URL = "sqlite:///./learnfastapi.db"
+config = Config('.env')
+
+SQLALCHEMY_DATABASE_URL = config('SQLALCHEMY_DATABASE_URL')
 
 engine = create_engine(
     url=SQLALCHEMY_DATABASE_URL,
-    connect_args={"check_same_thread": False},
 )
 
 SessionLocal = sessionmaker(
